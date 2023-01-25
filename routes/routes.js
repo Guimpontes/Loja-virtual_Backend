@@ -4,6 +4,10 @@ const userController = require('../controller/userController');
 const storeController = require('../controller/storeController');
 const auth = require('../controller/userAuthController')
 
+router.get("/", (req, res) => {
+    res.send("hello world")
+})
+
 
 router.post("/registration", userController.registration);
 router.post("/login", userController.login);
