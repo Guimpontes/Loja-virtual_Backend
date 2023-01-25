@@ -20,8 +20,8 @@ mongoose.connect(process.env.MONGOOSE_URL_CONNECTION, () => {
 // }
 
 app.use(express.json());
-app.use(cors())
-app.use("/api", routes)
+// app.use(cors())
+app.use("/api", cors(), routes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`)
