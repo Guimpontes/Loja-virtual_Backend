@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGOOSE_URL_CONNECTION, () => {
 // }
 
 app.use(express.json());
-// app.use(cors())
+app.use(cors())
 app.use("/api", routes)
 
 app.listen(process.env.PORT, () => {
