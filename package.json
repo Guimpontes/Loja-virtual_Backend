@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node ./src/server.js",
     "build_front": "npm run build --prefix ../front-end",
     "start_front": "npm start --prefix ../front-end",
     "start_back": "nodemon ./src/server.js",
