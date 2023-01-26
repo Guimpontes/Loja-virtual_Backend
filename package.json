@@ -1,6 +1,5 @@
 {
   "name": "back-end",
-  "proxy": "https://loja-virtualbackend-production.up.railway.app/api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
