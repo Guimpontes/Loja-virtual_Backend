@@ -94,7 +94,7 @@ const updateUserData = async (req, res) => {
 }
 
 const changePassword = async (req, res) => {
-    const { current_password, new_password } = req.body;
+    const { current_password, new_password, confirm_new_password } = req.body;
     const userId = req.user.id;
 
     // Validate
@@ -123,4 +123,25 @@ const changePassword = async (req, res) => {
     }
 }
 
-module.exports = { registration, login, updateUserData, changePassword };
+const deleteUser = async (req, res) => {
+    const { password, email } = req.body;
+    const userId = req.user.id;
+
+    const user = await User.findOne({ _id: userId })
+
+    // Compare email
+    if (email != user.email) return res.status(401).json({ msg: "", error: "invalid Data" })
+
+    // Compare password 
+    const comparePasword = await bcrypt.compare(password, user.password)
+    if (!comparePasword) return res.status(401).json({ msg: "", error: "invalid Data" });
+
+    try {
+        const deleteUser = await User.deleteOne({ _id: userId, email });
+        res.status(200).json({ msg: "successfully deleted account", error: "" });
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+module.exports = { registration, login, updateUserData, changePassword, deleteUser };
